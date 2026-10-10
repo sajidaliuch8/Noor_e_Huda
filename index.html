@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ur" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Noor-e-Huda - نورِ ہدیٰ</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',sans-serif}
+body{background:linear-gradient(135deg,#0f5132,#1a7a4a);color:#fff;min-height:100vh}
+.header{text-align:center;padding:20px;background:rgba(0,0,0,0.2)}
+.header h1{font-size:32px;margin-bottom:5px}
+.card{background:#fff;color:#222;border-radius:20px;margin:15px;padding:18px;box-shadow:0 5px 20px rgba(0,0,0,0.2)}
+.card h2{color:#0f5132;margin-bottom:12px;text-align:center}
+.prayer{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid #eee}
+.prayer:last-child{border:0}
+.prayer b{color:#0f5132}
+.tasbih{text-align:center}
+.tasbih .count{font-size:60px;color:#0f5132;font-weight:bold;margin:10px 0}
+.btn{background:#0f5132;color:#fff;border:0;padding:12px 25px;border-radius:30px;font-size:18px;margin:5px;cursor:pointer;width:90%}
+.btn:active{transform:scale(0.95)}
+.donate{background:linear-gradient(135deg,#ffd700,#ffb700);color:#000;text-align:center}
+.iban{background:#000;color:#ffd700;padding:10px;border-radius:10px;font-weight:bold;margin:10px 0;letter-spacing:1px;word-break:break-all}
+.qibla{text-align:center;font-size:50px}
+</style>
+</head>
+<body>
+<div class="header">
+<h1>نورِ ہدیٰ</h1>
+<p>Noor-e-Huda - Islamic Guide</p>
+<p id="date"></p>
+</div>
+
+<div class="card">
+<h2>🕌 اوقاتِ نماز - فیصل آباد</h2>
+<div class="prayer"><span>فجر</span><b id="fajr">05:12</b></div>
+<div class="prayer"><span>ظہر</span><b id="dhuhr">12:08</b></div>
+<div class="prayer"><span>عصر</span><b id="asr">15:38</b></div>
+<div class="prayer"><span>مغرب</span><b id="maghrib">17:52</b></div>
+<div class="prayer"><span>عشاء</span><b id="isha">19:12</b></div>
+<p style="text-align:center;margin-top:10px;font-size:12px;color:green">📍 لوکیشن: فیصل آباد کے مطابق</p>
+</div>
+
+<div class="card tasbih">
+<h2>📿 تسبیح</h2>
+<div class="count" id="count">0</div>
+<p id="zikr">سُبْحَانَ اللّٰہِ</p>
+<button class="btn" onclick="tasbih()">تسبیح کریں</button>
+<button class="btn" style="background:#ccc;color:#000" onclick="resetTasbih()">ری سیٹ</button>
+</div>
+
+<div class="card qibla">
+<h2>🧭 قبلہ رخ</h2>
+<div style="font-size:80px">🕋</div>
+<p>قبلہ کی سمت</p>
+<h1 style="color:#0f5132">295° NW</h1>
+<p style="font-size:13px">فیصل آباد سے خانہ کعبہ کی سمت</p>
+</div>
+
+<div class="card donate">
+<h2>💚 تعاون فرمائیں</h2>
+<p>اس دینی پروجیکٹ کی حمایت کریں</p>
+<div class="iban">PK45 TMFB 0000 0000 6052 2470</div>
+<p style="font-size:12px">Easypaisa / JazzCash / Bank Account</p>
+<p><b>نام: Sajid Ali</b></p>
+<button class="btn" onclick="copyIBAN()">IBAN کاپی کریں</button>
+<p id="copyMsg"></p>
+</div>
+
+<div class="card" style="text-align:center;background:#0f5132;color:#fff">
+<p>بِسْمِ اللّٰہِ الرَّحْمٰنِ الرَّحِیْمِ</p>
+<p style="margin-top:10px;font-size:13px">Developed for Sadqa-e-Jaria | Noor_e_Huda</p>
+</div>
+
+<script>
+document.getElementById('date').innerText = new Date().toLocaleDateString('ur-PK',{weekday:'long',year:'numeric',month:'long',day:'numeric'});
+let c=0; let azkar=["سُبْحَانَ اللّٰہِ","اَلْحَمْدُ لِلّٰہِ","اَللّٰہُ اَکْبَرُ","لَا اِلٰہَ اِلَّا اللّٰہُ","اَسْتَغْفِرُاللّٰہَ"];
+function tasbih(){c++;document.getElementById('count').innerText=c;document.getElementById('zikr').innerText=azkar[Math.floor(c/33)%azkar.length];if(navigator.vibrate)navigator.vibrate(50)}
+function resetTasbih(){c=0;document.getElementById('count').innerText=0}
+function copyIBAN(){navigator.clipboard.writeText('PK45TMFB0000000060522470');document.getElementById('copyMsg').innerText='✅ کاپی ہو گیا!';setTimeout(()=>document.getElementById('copyMsg').innerText='',2000)}
+</script>
+</body>
+</html>
